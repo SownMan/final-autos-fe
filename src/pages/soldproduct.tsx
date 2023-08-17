@@ -17,10 +17,11 @@ const SoldProduct: React.FunctionComponent<ISoldProductProps> = (props) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [isPending, setIsPending] = useState(true);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8001/products/${productId}`)
+      .get(`${apiUrl}/${productId}`)
       .then((res) => {
         setImage(res.data.product.image);
         setBrand(res.data.product.brand);
@@ -38,7 +39,7 @@ const SoldProduct: React.FunctionComponent<ISoldProductProps> = (props) => {
   const soldProduct = () => {
     axios
       .put(
-        `http://localhost:8001/products/sold/${productId}`,
+        `${apiUrl}/products/sold/${productId}`,
         {},
         {
           withCredentials: true,

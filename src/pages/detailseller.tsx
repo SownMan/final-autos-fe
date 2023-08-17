@@ -22,10 +22,10 @@ const DetailSeller: React.FunctionComponent<IDetailSellerProps> = (props) => {
   const [idSeller, setIdSeller] = useState<number | null>(null);
   const [isPending, setIsPending] = useState(false);
   const router = useRouter();
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
   useEffect(() => {
     axios
-      .get("http://localhost:8001/auth/validate", {
+      .get(`${apiUrl}/auth/validate`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -39,7 +39,7 @@ const DetailSeller: React.FunctionComponent<IDetailSellerProps> = (props) => {
     console.log(postcode)
     axios
       .post(
-        "http://localhost:8001/address",
+        `${apiUrl}/address`,
         {
           user_id: id,
           address,

@@ -34,10 +34,11 @@ const UserDetail: React.FunctionComponent<IUserDetailProps> = (props) => {
   const [isUserVeridId, setIsUserVeridId] = useState("");
   const [isSold, setIsSold] = useState(false);
   const router = useRouter();
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   useEffect(() => {
     axios
-      .get("http://localhost:8001/auth/validate", {
+      .get(`${apiUrl}/auth/validate`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -48,7 +49,7 @@ const UserDetail: React.FunctionComponent<IUserDetailProps> = (props) => {
         {
           isPending &&
             axios
-              .get(`http://localhost:8001/products/user/${id}`)
+              .get(`${apiUrl}/products/user/${id}`)
               .then((res) => {
                 setProducts(res.data.products);
                 setIsLoading(false);
@@ -59,7 +60,7 @@ const UserDetail: React.FunctionComponent<IUserDetailProps> = (props) => {
         {
           isPending &&
             axios
-              .get(`http://localhost:8001/address/user/${id}`, {
+              .get(`${apiUrl}/address/user/${id}`, {
                 withCredentials: true,
               })
               .then((res) => {
@@ -74,7 +75,7 @@ const UserDetail: React.FunctionComponent<IUserDetailProps> = (props) => {
         {
           isPending &&
             axios
-              .get(`http://localhost:8001/user-verifications/user/${id}`, {
+              .get(`${apiUrl}/user-verifications/user/${id}`, {
                 withCredentials: true,
               })
               .then((res) => {
@@ -92,7 +93,7 @@ const UserDetail: React.FunctionComponent<IUserDetailProps> = (props) => {
 
   const deleteUserVerif = () => {
     axios
-      .delete(`http://localhost:8001/user-verifications/${isUserVeridId}`, {
+      .delete(`${apiUrl}/user-verifications/${isUserVeridId}`, {
         withCredentials: true
       })
       .then((res) => {

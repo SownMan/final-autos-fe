@@ -24,6 +24,7 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   const onSubmit = (data: typeLogin) => {
     console.log("Form Submitted", data);
@@ -33,7 +34,7 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
 
     axios
       .post(
-        "http://localhost:8001/auth/login",
+        '${apiUrl}/auth/login',
         {
           email,
           password,

@@ -27,10 +27,11 @@ const ValidasiSeller: React.FunctionComponent<IValidasiSellerProps> = (
   const [iud, setIud] = useState<File | null>(null);
   const [situ, setSitu] = useState<File | null>(null);
   const router = useRouter();
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   useEffect(() => {
     axios
-      .get("http://localhost:8001/auth/validate", {
+      .get(`${apiUrl}/auth/validate`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -43,7 +44,7 @@ const ValidasiSeller: React.FunctionComponent<IValidasiSellerProps> = (
     console.log("Form Submitted", data);
     axios
       .post(
-        "http://localhost:8001/user-verifications",
+        `${apiUrl}/user-verifications`,
         {
           user_id: id,
           skdu,

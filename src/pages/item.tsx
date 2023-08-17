@@ -8,6 +8,7 @@ import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/router";
 
+ 
 //local inmage
 import ImageMobil from "../../public/assets/mobil.png";
 
@@ -16,6 +17,7 @@ import ItemMobil from "../cards/productCards/ItemMobil";
 import Link from "next/link";
 import { Product } from "../types";
 import DetailPost from "./detailpost";
+import { env } from "process";
 
 interface IItemProps {}
 
@@ -23,10 +25,10 @@ const Item: React.FunctionComponent<IItemProps> = (props) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isPending, setIsPending] = useState(true);
   const router = useRouter();
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
   useEffect(() => {
     axios
-      .get("http://localhost:8001/products")
+      .get(`${apiUrl}/products`)
       .then((res) => {
         setProducts(res.data.data);
         setIsPending(false);
@@ -35,7 +37,7 @@ const Item: React.FunctionComponent<IItemProps> = (props) => {
   }, []);
 
   const filterProductVerif = products.filter((product) => product.validation_status === true)
-
+  
   return (
     <div className="container_Item_Mobil">
       {isPending && <div>Loading....</div>}

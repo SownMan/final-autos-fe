@@ -28,10 +28,10 @@ const DetailPost: React.FunctionComponent<IDetailPostProps> = (props) => {
   const [status, setStatus] = useState("");
   const { productId } = router.query;
   const [statusSold, setStatusSold] = useState(false);
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
   useEffect(() => {
     axios
-      .get(`http://localhost:8001/products/${productId}`, {
+      .get(`${apiUrl}/products/${productId}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -49,7 +49,7 @@ const DetailPost: React.FunctionComponent<IDetailPostProps> = (props) => {
         {
           isPending &&
             axios
-              .get(`http://localhost:8001/address/user/${isUserId}`, {
+              .get(`${apiUrl}/address/user/${isUserId}`, {
                 withCredentials: true,
               })
               .then((res) => {

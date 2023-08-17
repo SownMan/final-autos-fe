@@ -43,10 +43,10 @@ const EditDeleteProduct: React.FunctionComponent<IEditDeleteProductProps> = (
   const form = useForm<postValues>();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
   useEffect(() => {
     axios
-      .get("http://localhost:8001/auth/validate", {
+      .get(`${apiUrl}/auth/validate`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -58,7 +58,7 @@ const EditDeleteProduct: React.FunctionComponent<IEditDeleteProductProps> = (
     {
       isPending &&
         axios
-          .get(`http://localhost:8001/products/${productId}`, {
+          .get(`${apiUrl}/products/${productId}`, {
             withCredentials: true,
           })
           .then((res) => {
@@ -99,7 +99,7 @@ const EditDeleteProduct: React.FunctionComponent<IEditDeleteProductProps> = (
 
     axios
       .put(
-        `http://localhost:8001/products/${productId}`,
+        `${apiUrl}/products/${productId}`,
         {
           type: type || oldType,
           brand: brand || oldBrand,
@@ -127,7 +127,7 @@ const EditDeleteProduct: React.FunctionComponent<IEditDeleteProductProps> = (
 
   const deleteProduct = () => {
     axios
-      .delete(`http://localhost:8001/products/${productId}`, {
+      .delete(`${apiUrl}/products/${productId}`, {
         withCredentials: true,
         headers: { "Content-Type": "multipart/form-data" },
       })

@@ -12,10 +12,10 @@ const AdminUserVerification: React.FunctionComponent<
 > = (props) => {
   const [users, setUsers] = useState<UserValidate[]>([]);
   const router = useRouter();
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
   useEffect(() => {
     axios
-      .get("http://localhost:8001/user-verifications", {
+      .get(`${apiUrl}/user-verifications`, {
         withCredentials: true,
       })
       .then((res) => {

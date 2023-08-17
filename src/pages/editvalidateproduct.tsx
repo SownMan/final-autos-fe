@@ -63,10 +63,11 @@ const EditValidateProduct: React.FunctionComponent<
   const [gambarprodukstnk, setGambarProdukStnk] = useState<File | null>(null);
   const [gambarprodukbpkb, setGambarProdukBpkb] = useState<File | null>(null);
   const [linkGDvalidasi, setLinkGDvalidasi] = useState("");
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8001/product-inspections/${inspectionId}`, {
+      .get(`${apiUrl}/product-inspections/${inspectionId}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -89,7 +90,7 @@ const EditValidateProduct: React.FunctionComponent<
     console.log("Form Submitted", data);
 
     axios
-        .put(`http://localhost:8001/product-inspections/${inspectionId}`, {
+        .put(`${apiUrl}/product-inspections/${inspectionId}`, {
             depan: gambarprodukdepan,
             belakang: gambarprodukbelakang,
             kiri: gambarprodukkiri,

@@ -20,10 +20,11 @@ const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
   const [role, setRole] = useState("");
   const router = useRouter();
   const isIndexPage = router.pathname === "/";
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   useEffect(() => {
     axios
-      .get("http://localhost:8001/auth/validate", {
+      .get(`${apiUrl}/auth/validate`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -40,7 +41,7 @@ const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
 
   const signOut = () => {
     axios
-      .get("http://localhost:8001/auth/logout", {
+      .get(`${apiUrl}/auth/logout`, {
         withCredentials: true,
       })
       .then((res) => {

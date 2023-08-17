@@ -3,6 +3,7 @@ import Navbar from "./navbar";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { apiBaseUrl } from "next-auth/client/_utils";
 
 interface IEditValidationProductProps {}
 
@@ -22,10 +23,10 @@ const EditValidationProduct: React.FunctionComponent<
   const [oldStnk, setOldStnk] = useState<any | null>(null);
   const [oldGdrive, setOldGdrive] = useState<any | null>(null);
   const [oldBpkb, setOldBpkb] = useState<any | null>(null);
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
   useEffect(() => {
     axios
-      .get("http://localhost:8001/auth/validate", {
+      .get(`${apiBaseUrl}/auth/validate`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -37,7 +38,7 @@ const EditValidationProduct: React.FunctionComponent<
     {
       isPending &&
         axios
-          .get(`http://localhost:8001/product-inspections/user/${id}`, {
+          .get(`${apiUrl}/product-inspections/user/${id}`, {
             withCredentials: true,
           })
           .then((res) => {

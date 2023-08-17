@@ -23,10 +23,11 @@ const ItemMotor: React.FunctionComponent<IItemMotorProps> = (props) => {
     const [products, setProducts] = useState<Product[]>([]);
   const [isPending, setIsPending] = useState(true);
   const router = useRouter();
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   useEffect(() => {
     axios
-      .get("http://localhost:8001/products")
+      .get(`${apiUrl}/products`)
       .then((res) => {
         setProducts(res.data.data);
         setIsPending(false);

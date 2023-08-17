@@ -23,10 +23,11 @@ const AdminProductVerificationDetail: React.FunctionComponent<
   const [gambarprodukbpkb, setGambarProdukBpkb] = useState<any | null>(null);
   const [linkGDvalidasi, setLinkGDvalidasi] = useState("");
   const [isPending, setIsPending] = useState(true);
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8001/product-inspections/${productId}`, {
+      .get(`${apiUrl}/product-inspections/${productId}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -48,7 +49,7 @@ const AdminProductVerificationDetail: React.FunctionComponent<
   const cancelSubmit = () => {
     axios
       .put(
-        `http://localhost:8001/product-inspections/decline/${productId}`,
+        `${apiUrl}/product-inspections/decline/${productId}`,
         {},
         {
           withCredentials: true,
@@ -69,7 +70,7 @@ const AdminProductVerificationDetail: React.FunctionComponent<
   const verifySubmit = () => {
     axios
       .put(
-        `http://localhost:8001/product-inspections/validate/${productId}`,
+        `${apiUrl}/product-inspections/validate/${productId}`,
         {},
         {
           withCredentials: true,

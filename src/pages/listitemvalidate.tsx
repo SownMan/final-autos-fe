@@ -18,10 +18,11 @@ const ListItemValidate: React.FunctionComponent<IListItemValidateProps> = (
   const [isLoading, setIsLoading] = useState(true);
   const [id, setId] = useState("");
   const router = useRouter();
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8001/auth/validate`, {
+      .get(`${apiUrl}/auth/validate`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -31,7 +32,7 @@ const ListItemValidate: React.FunctionComponent<IListItemValidateProps> = (
         {
           isPending &&
             axios
-              .get(`http://localhost:8001/product-inspections/user/${id}`, {
+              .get(`${apiUrl}/product-inspections/user/${id}`, {
                 withCredentials: true,
               })
               .then((res) => {

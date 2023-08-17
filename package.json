@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "homepage": "https://github.com/JovHariono/FinalProjectSkripsi.git",
+  "homepage": "https://github.com/SownMan/final-autos-fe",
   "private": true,
   "scripts": {
     "dev": "next dev",

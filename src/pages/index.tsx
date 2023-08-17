@@ -59,10 +59,10 @@ export default function Home() {
   const [name, setName] = useState("");
   const [user, setUser] = useState(false);
   const [role, SetRole] = useState("")
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
   useEffect(() => {
     axios
-      .get("http://localhost:8001/auth/validate", {
+      .get(`${apiUrl}/auth/validate`, {
         withCredentials: true,
       })
       .then((res) => {

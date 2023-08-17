@@ -33,6 +33,7 @@ const CreatePost: React.FunctionComponent<ICreatePostProps> = (props) => {
   const [description, setDescription] = useState("");
   const [isPending, setIsPending] = useState(false);
   const router = useRouter();
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   const postSubmited = (data: postValues) => {
     // const formdata = new FormData();
@@ -42,7 +43,7 @@ const CreatePost: React.FunctionComponent<ICreatePostProps> = (props) => {
 
     axios
       .post(
-        "http://localhost:8001/products",
+        `${apiUrl}/products`,
         {
           type,
           brand,

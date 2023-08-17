@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "./navbar";
 import { useRouter } from "next/router";
+import { apiBaseUrl } from "next-auth/client/_utils";
 
 type FormValues = {
   product_id: number;
@@ -40,10 +41,11 @@ const ValidasiProduk: React.FunctionComponent<IValidasiProdukProps> = (
   const [latestPostId, setLatestPostId] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [isLoading, setIsLoading] = useState(false)
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   useEffect(() => {
     axios
-      .get("http://localhost:8001/products")
+      .get(`${apiUrl}/products`)
       .then((res) => {
         const posts = res.data.data;
         const latestPost = posts.reduce(
@@ -66,7 +68,7 @@ const ValidasiProduk: React.FunctionComponent<IValidasiProdukProps> = (
 
     axios
       .post(
-        "http://localhost:8001/product-inspections",
+        `${apiUrl}/product-inspections`,
         {
           product_id: latestPostId,
           depan: gambarprodukdepan,

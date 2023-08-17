@@ -16,10 +16,10 @@ const AdminUserVerificationDetail: React.FunctionComponent<
   const [situ, setSitu] = useState<any | null>(null);
   const [skdu, setSkdu] = useState<any | null>(null);
   const [isPending, setIsPending] = useState(true);
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
   useEffect(() => {
     axios
-      .get(`http://localhost:8001/user-verifications/${verifId}`, {
+      .get(`${apiUrl}/user-verifications/${verifId}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -37,7 +37,7 @@ const AdminUserVerificationDetail: React.FunctionComponent<
   const cancelSubmit = () => {
     axios
       .put(
-        `http://localhost:8001/user-verifications/decline/${verifId}`,
+        `${apiUrl}/user-verifications/decline/${verifId}`,
         {},
         {
           withCredentials: true,
@@ -58,7 +58,7 @@ const AdminUserVerificationDetail: React.FunctionComponent<
   const verifySubmit = () => {
     axios
       .put(
-        `http://localhost:8001/user-verifications/verify/${verifId}`,
+        `${apiUrl}/user-verifications/verify/${verifId}`,
         {},
         {
           withCredentials: true,

@@ -26,6 +26,7 @@ const Login: React.FunctionComponent = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const router = useRouter();
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
   const pass = watch("password");
 
@@ -51,7 +52,7 @@ const Login: React.FunctionComponent = () => {
     console.log("Form submitted", data);
 
     axios
-      .post("http://localhost:8001/auth/register", {
+      .post(`${apiUrl}:8001/auth/register`, {
         email,
         username,
         password,

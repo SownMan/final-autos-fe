@@ -12,10 +12,10 @@ const AdminProductVerification: React.FunctionComponent<
 > = (props) => {
   const [products, setProducts] = useState<ProductValidate[]>([]);
   const router = useRouter();
-
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL
   useEffect(() => {
     axios
-      .get("http://localhost:8001/product-inspections", {
+      .get(`${apiUrl}/product-inspections`, {
         withCredentials: true,
       })
       .then((res) => {
