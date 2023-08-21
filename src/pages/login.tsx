@@ -34,7 +34,7 @@ const Login: React.FunctionComponent<ILoginProps> = (props) => {
 
     axios
       .post(
-        '${apiUrl}/auth/login',
+        `${apiUrl}/auth/login`,
         {
           email,
           password,
